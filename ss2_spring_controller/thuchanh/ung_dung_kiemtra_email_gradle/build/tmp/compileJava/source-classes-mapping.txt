@@ -1,0 +1,2 @@
+com/example/ung_dung_kiemtra_email_gradle/controller/EmailController.java
+ com.example.ung_dung_kiemtra_email_gradle.controller.EmailController
