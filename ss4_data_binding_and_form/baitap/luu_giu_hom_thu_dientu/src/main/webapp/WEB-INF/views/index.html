@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table tr td{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<form th:object="${mailBox}" method="post">
+    <fieldset>
+    <h3>Settings</h3>
+        <table>
+            <tr>
+                <td><label>Languages</label></td>
+                <td>
+                    <select th:field="*{language}">
+                        <option th:each="lg : ${listLang}" th:text="${lg}" th:value="${lg}"></option>
+                        <option th:text="*{language}" th:value="*{language}" selected="selected"></option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Page Size:</label></td>
+                <td><span>Show</span>
+                    <select th:field="*{size}">
+                        <option th:each="ls : ${listSize}" th:text="${ls}" th:value="${ls}"></option>
+                        <option th:text="*{size}" th:value="*{size}" selected="selected">
+                    </select>
+                    <span>email per page</span></td>
+            </tr>
+
+            <tr>
+                <td><label>Spams filter:</label></td>
+                <td><input type="checkbox" th:field="*{spam}">
+                    <span>Enable spams filter</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>Signature:</label></td>
+                <td><textarea th:field="*{signature}" th:text="*{signature}"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Update" style="background-color: rgb(103 194 250);" formaction="/save">
+                    <input type="submit" value="Cancel" formaction="/form">
+                </td>
+            </tr>
+        </table>
+
+
+    </fieldset>
+
+</form>
+</body>
+</html>

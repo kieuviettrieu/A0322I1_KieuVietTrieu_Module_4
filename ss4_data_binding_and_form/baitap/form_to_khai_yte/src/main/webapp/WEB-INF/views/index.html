@@ -1,0 +1,343 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table tr td{
+            padding-top: 20px;
+        }
+
+        h3,h4,h5{
+            text-align: center;
+        }
+
+        .widthFull{
+            width: 100%;
+        }
+
+        .cen-tr td{
+            text-align: center;
+        }
+
+        .width-200{
+            width: 490px;
+        }
+
+        table tr td {
+            padding-top: 10px;
+            /*padding-right: 411px;*/
+        }
+
+        .cen-tr, .cen-tr td,.cen-tr th{
+            border: 1px black solid;
+        }
+
+        .titt ,.titt th{
+            background-color: darkgrey;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<form th:object="${declarationMedical}" method="post" action="/show">
+    <fieldset>
+        <table>
+            <h3>TỜ KHAI Y TẾ</h3>
+            <h4>ĐÂY LÀ TÀI LIỆU QUAN TRỌNG, THÔNG TIN CỦA ANH CHỊ  SẼ GIÚP CƠ QUAN Y TẾ LIÊN LẠC KHI CẦN THIẾT ĐỂ PHÒNG CHỐNG DỊCH BỆNH TRUYỀN NHIỄM</h4>
+            <h5 style="color: red">Khuyến cáo: Khai báo thông tin sai là vi phạm pháp luật Việt Nam và có thể bị xử lý hình sự</h5>
+
+        <label>Họ tên (ghi chữ IN HOA)</label>
+        <input type="text" th:field="*{ten}" th:text="*{ten}" th:value="*{ten}" style="width: 100%" required>
+        <br>
+
+            <tr>
+                <td>Năm sinh</td>
+                <td>Giới tính</td>
+                <td>Quốc tịch</td>
+            </tr>
+
+            <tr >
+                <td>
+                    <select th:field="*{namSinh}" class="width-200" required>
+                        <option  th:each="ls : ${listNamSinh}" th:text="${ls}" th:value="${ls}"></option>
+                        <option  th:text="*{namSinh}" th:value="*{namSinh}" selected="selected">
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{gender}" class="width-200" required>
+                        <option  th:each="ls : ${listGender}" th:text="${ls}" th:value="${ls}"></option>
+                        <option  th:text="*{gender}" th:value="*{gender}" selected="selected">
+                    </select>
+                </td>
+                <td>
+                    <select  th:field="*{quocTich}" class="width-200" required>
+                        <option th:each="ls : ${listQuocTich}" th:text="${ls}" th:value="${ls}"></option>
+                        <option th:text="*{quocTich}" th:value="*{quocTich}" selected="selected">
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    Số hộ chiếu hoặc số CMND hoặc giấy thông hành hợp pháp khác
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" class="widthFull">
+                    <input type="number" th:field="*{cmnd}" th:text="*{cmnd}" th:value="*{cmnd}" style="width: 100%" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Thông tin đi lại</td>
+                <td>
+                    <ul>
+                        <li th:each="lg: ${listPhuongTien}" style="list-style: none; display: inline">
+                            <input type="radio" th:field="*{thongTinDiLai}" th:value="${lg}" th:text="${lg}" name="dilai" required>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>Số hiệu phương tiện</td>
+                <td>
+                    <input th:field="*{soHieuPhuongTien}" th:text="*{soHieuPhuongTien}" th:value="*{soHieuPhuongTien}" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Số ghế</td>
+                <td>
+                    <input type="number" th:field="*{soGhe}" th:value="*{soGhe}" required>
+                </td>
+            </tr>
+
+<!--            <tr>-->
+<!--                <td>Ngày khởi hành</td>-->
+<!--                <td>-->
+<!--                    <input type="date" th:text="*{ngayBatDau}" th:field="*{ngayBatDau}" th:value="*{ngayBatDau}" required>-->
+<!--                </td>-->
+<!--            </tr>-->
+
+<!--            <tr>-->
+<!--                <td>Ngày kết thúc</td>-->
+<!--                <td>-->
+<!--                    <input type="date" th:text="*{ngayKetThuc}" th:field="*{ngayKetThuc}" th:value="*{ngayKetThuc}" required>-->
+<!--                </td>-->
+<!--            </tr>-->
+
+            <tr>
+                <td>Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào?</td>
+                <td>
+                    <textarea th:text="*{thongTinGanDay}" th:field="*{thongTinGanDay}" th:value="*{thongTinGanDay}" required></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Địa chỉ liên lạc</td>
+            </tr>
+
+            <tr>
+                <td>Tỉnh/thành</td>
+                <td>Quận/huyện</td>
+                <td>Phường/xã</td>
+            </tr>
+
+            <tr >
+                <td>
+                    <select th:field="*{tinh}" class="width-200" required>
+                        <option  value="Quang Nam">Quang Nam</option>
+                        <option value="Sai Gon">Sai Gon</option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{huyen}" class="width-200" required>
+                        <option  value="Thang Binh">Thang Binh</option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{xa}" class="width-200" required>
+                        <option value="Binh Tu">Binh Tu</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Địa chỉ nơi ở</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input th:field="*{diaChi}" th:text="*{diaChi}" th:value="*{diaChi}" style="width: 100%" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Điện thoại</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="number" th:field="*{sdt}" th:text="*{sdt}" th:value="*{sdt}" style="width: 100%" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="text" th:field="*{email}" th:text="*{email}" th:value="*{email}" style="width: 100%" required>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th colspan="3">Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện dấu hiệu nào sau đây không?</th>
+            </tr>
+
+            <tr class="titt">
+                <th>Triệu chứng</th>
+                <th>Có</th>
+                <th>Không</th>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Sốt</td>
+                <td>
+                    <input th:field="*{sot}" type="radio" th:value="true" name="sot">
+                </td>
+                <td>
+                    <input th:field="*{sot}" type="radio" th:value="false" name="sot">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Ho</td>
+                <td>
+                    <input th:field="*{ho}" type="radio" th:value="true" name="ho">
+                </td>
+                <td>
+                    <input th:field="*{ho}" type="radio" th:value="false" name="ho">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Khó thở</td>
+                <td>
+                    <input th:field="*{khoTho}" type="radio" th:value="true" name="khoTho">
+                </td>
+                <td>
+                    <input th:field="*{khoTho}" type="radio" th:value="false" name="khoTho">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Đau họng</td>
+                <td>
+                    <input th:field="*{dauHong}" type="radio" th:value="true" name="dauHong">
+                </td>
+                <td>
+                    <input th:field="*{dauHong}" type="radio" th:value="false" name="dauHong">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Nôn/buồn nôn</td>
+                <td>
+                    <input th:field="*{non}" type="radio" th:value="true" name="non">
+                </td>
+                <td>
+                    <input th:field="*{non}" type="radio" th:value="false" name="non">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Tiêu chảy</td>
+                <td>
+                    <input th:field="*{tieuChay}" type="radio" th:value="true" name="tieuChay">
+                </td>
+                <td>
+                    <input th:field="*{tieuChay}" type="radio" th:value="false" name="tieuChay">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Xuất huyết ngoài da</td>
+                <td>
+                    <input th:field="*{xuatHuyet}" type="radio" th:value="true" name="xuatHuyet">
+                </td>
+                <td>
+                    <input th:field="*{xuatHuyet}" type="radio" th:value="false" name="xuatHuyet">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Nổi ban ngoài da</td>
+                <td>
+                    <input th:field="*{noiBan}" type="radio" th:value="true" name="noiBan">
+                </td>
+                <td>
+                    <input th:field="*{noiBan}" type="radio" th:value="false" name="noiBan">
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th colspan="3">Lịch sử phơi nhiễm: Trong vòng 14 ngày qua Anh/Chị có</th>
+            </tr>
+
+            <tr class="titt">
+                <th></th>
+                <th>Có</th>
+                <th>Không</th>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Đến trang trại chăn nuôi/ chợ buôn bán động vật sống/ cơ sở giết mổ động vật/ tiếp xúc động vật</td>
+                <td>
+                    <input th:field="*{tiepXucDongVat}" type="radio" th:value="true" name="tiepXucDongVat">
+                </td>
+                <td>
+                    <input th:field="*{tiepXucDongVat}" type="radio" th:value="false" name="tiepXucDongVat">
+                </td>
+            </tr>
+
+            <tr class="cen-tr">
+                <td>Tiếp xúc gần (<2m) với người mắc bệnh viêm đường hô hấp do nCoV</td>
+                <td>
+                    <input th:field="*{tiepXucNguoiBenh}" type="radio" th:value="true" name="tiepXucNguoiBenh">
+                </td>
+                <td>
+                    <input th:field="*{tiepXucNguoiBenh}" type="radio" th:value="false" name="tiepXucNguoiBenh">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3" style="color: red">Dữ liệu bạn cung cấp hoàn toàn bảo mật và chỉ phục vụ cho việc phòng chống dịch, thuộc quản lý của Ban chỉ đạo về Phòng chống dịch Covid-19.
+                <br>Khi bạn nhấn nút "Gửi" là bạn đã hiểu và đồng ý.</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td style="text-align: center">
+                    <input type="submit" value="GỬI TỜ KHAI" style="background-color: chartreuse; color: aliceblue; height: 36px; border-radius: 15px">
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+
+    </fieldset>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<h3>Information</h3>
+<form th:object="${declarationMedical}">
+    <p th:text="*{toString()}"></p>
+</form>
+</body>
+</html>
