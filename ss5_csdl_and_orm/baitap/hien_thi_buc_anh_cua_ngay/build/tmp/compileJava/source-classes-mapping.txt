@@ -1,0 +1,20 @@
+com/example/cms/repository/CommentRepository.java
+ com.example.cms.repository.CommentRepository
+com/example/cms/repository/ICommentRepository.java
+ com.example.cms.repository.ICommentRepository
+com/example/cms/configuration/AppInit.java
+ com.example.cms.configuration.AppInit
+com/example/cms/model/Comment.java
+ com.example.cms.model.Comment
+com/example/cms/service/CommentService.java
+ com.example.cms.service.CommentService
+com/example/cms/service/IGeneralService.java
+ com.example.cms.service.IGeneralService
+com/example/cms/configuration/AppConfig.java
+ com.example.cms.configuration.AppConfig
+com/example/cms/repository/IGeneralRepository.java
+ com.example.cms.repository.IGeneralRepository
+com/example/cms/service/ICommentService.java
+ com.example.cms.service.ICommentService
+com/example/cms/controller/CommentController.java
+ com.example.cms.controller.CommentController

@@ -1,0 +1,20 @@
+com/example/ung_dung_quanly_kh/repository/IGeneralRepository.java
+ com.example.ung_dung_quanly_kh.repository.IGeneralRepository
+com/example/ung_dung_quanly_kh/repository/ICustomerRepository.java
+ com.example.ung_dung_quanly_kh.repository.ICustomerRepository
+com/example/ung_dung_quanly_kh/service/CustomerService.java
+ com.example.ung_dung_quanly_kh.service.CustomerService
+com/example/ung_dung_quanly_kh/model/Customer.java
+ com.example.ung_dung_quanly_kh.model.Customer
+com/example/ung_dung_quanly_kh/service/ICustomerService.java
+ com.example.ung_dung_quanly_kh.service.ICustomerService
+com/example/ung_dung_quanly_kh/controller/CustomerController.java
+ com.example.ung_dung_quanly_kh.controller.CustomerController
+com/example/ung_dung_quanly_kh/repository/CustomerRepository.java
+ com.example.ung_dung_quanly_kh.repository.CustomerRepository
+com/example/ung_dung_quanly_kh/service/IGeneralService.java
+ com.example.ung_dung_quanly_kh.service.IGeneralService
+com/example/ung_dung_quanly_kh/configuration/AppInit.java
+ com.example.ung_dung_quanly_kh.configuration.AppInit
+com/example/ung_dung_quanly_kh/configuration/AppConfig.java
+ com.example.ung_dung_quanly_kh.configuration.AppConfig
