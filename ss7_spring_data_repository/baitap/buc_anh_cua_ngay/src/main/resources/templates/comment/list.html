@@ -59,5 +59,20 @@
         </tr>
     </th:block>
 </table>
+<div>
+    <div>
+        <a th:if="${comments.hasPrevious()}"
+           th:href="@{'/comments/'(page=${comments.number - 1})}">
+            Previous
+        </a>
+        <span th:text="${comments.number + 1}"></span>
+        /
+        <span th:text="${comments.totalPages}"></span>
+        <a th:if="${comments.hasNext()}"
+           th:href="@{'/comments/'(page=${comments.number + 1})}">
+            Next
+        </a>
+    </div>
+</div>
 </body>
 </html>

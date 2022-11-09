@@ -18,4 +18,5 @@ public interface ICommentRepository extends JpaRepository<Comment,Long> {
     Page<Comment> findAllByAuthorContaining(String name, Pageable pageable);
 
     Page<Comment> findAll(Pageable pageable);
+
 }

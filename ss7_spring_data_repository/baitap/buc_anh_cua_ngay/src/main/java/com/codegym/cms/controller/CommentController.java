@@ -3,6 +3,8 @@ package com.codegym.cms.controller;
 import com.codegym.cms.model.Comment;
 import com.codegym.cms.service.comment.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,9 +20,26 @@ public class CommentController {
     @Autowired
     private ICommentService commentService;
 
+//    @GetMapping("/comments")
+//    public ModelAndView listComments() {
+//        List<Comment> comments = commentService.findAll();
+//        List<Integer> points=new ArrayList<>();
+//        points.add(1);
+//        points.add(2);
+//        points.add(3);
+//        points.add(4);
+//        points.add(5);
+//
+//        ModelAndView modelAndView = new ModelAndView("comment/list");
+//        modelAndView.addObject("comments", comments);
+//        modelAndView.addObject("comment",new Comment());
+//        modelAndView.addObject("points",points);
+//        return modelAndView;
+//    }
+
     @GetMapping("/comments")
-    public ModelAndView listComments() {
-        List<Comment> comments = commentService.findAll();
+    public ModelAndView listCommentPage(@PageableDefault(value = 5) Pageable pageable)
+    {
         List<Integer> points=new ArrayList<>();
         points.add(1);
         points.add(2);
@@ -29,11 +48,12 @@ public class CommentController {
         points.add(5);
 
         ModelAndView modelAndView = new ModelAndView("comment/list");
-        modelAndView.addObject("comments", comments);
+        modelAndView.addObject("comments", commentService.findAll(pageable));
         modelAndView.addObject("comment",new Comment());
         modelAndView.addObject("points",points);
         return modelAndView;
     }
+
 
     @GetMapping("/comment-detail/{id}")
     public ModelAndView commentsDetail(@PathVariable Long id) {
@@ -70,14 +90,13 @@ public class CommentController {
 //    }
 
     @GetMapping("/comment-like/{id}")
-    public ModelAndView like(@PathVariable Long id)
+    public ModelAndView like(@PathVariable Long id,@PageableDefault(value = 5) Pageable pageable)
     {
         Comment comment=commentService.findById(id);
         int like=comment.getLikeComment();
         comment.setLikeComment(++like);
         commentService.save(comment);
 
-        List<Comment> comments = commentService.findAll();
         List<Integer> points=new ArrayList<>();
         points.add(1);
         points.add(2);
@@ -87,7 +106,7 @@ public class CommentController {
 
         ModelAndView modelAndView = new ModelAndView("comment/list");
 
-        modelAndView.addObject("comments", comments);
+        modelAndView.addObject("comments", commentService.findAll(pageable));
         modelAndView.addObject("comment",new Comment());
         modelAndView.addObject("points",points);
         return modelAndView;
