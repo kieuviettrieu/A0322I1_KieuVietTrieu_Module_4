@@ -53,12 +53,6 @@ public class MusicController {
         return new ModelAndView("/music/update", "music", musicService.findById(id));
     }
 
-//    @PostMapping("/update/{id}")
-//    public String updateMusic(@ModelAttribute Music music, RedirectAttributes redirectAttributes){
-//        musicService.save(music);
-//        redirectAttributes.addFlashAttribute("message", "Update Music: " + music.getName() + " done!");
-//        return "redirect:/music";
-//    }
 
     @PostMapping("/update")
     public String update (@Valid @ModelAttribute("music")Music music, BindingResult bindingResult, Model model){
