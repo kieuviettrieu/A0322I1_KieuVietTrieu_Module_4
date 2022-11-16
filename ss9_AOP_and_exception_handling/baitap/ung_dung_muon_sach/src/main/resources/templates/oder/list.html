@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Oders</title>
+</head>
+<body>
+<a th:href="@{/books}">List book</a>
+<br>
+<a th:href="@{/create-oder}">Create oder</a>
+<br><br>
+
+<h1>Oders</h1>
+
+
+<!--SOạn phần nội dung table-->
+<table border="1">
+    <tr>
+        <th>ID Oder</th>
+        <th>Name Book</th>
+        <th>Quantity</th>
+        <th>Return</th>
+    </tr>
+    <th:block th:each="oder : ${oders}">
+        <tr>
+            <th th:text="${oder.id}"></th>
+            <td th:text="${oder.book.nameBook}"></td>
+            <td th:text="${oder.quantity}"></td>
+            <td><a th:href="@{/return-oder/__${oder.id}__ }">Return</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <div>
+        <a th:if="${oders.hasPrevious()}"
+           th:href="@{'/oders/'(page=${oders.number - 1})}">
+            Previous
+        </a>
+        <span th:text="${oders.number + 1}"></span>
+        /
+        <span th:text="${oders.totalPages}"></span>
+        <a th:if="${oders.hasNext()}"
+           th:href="@{'/oders/'(page=${oders.number + 1})}">
+            Next
+        </a>
+    </div>
+</div>
+</body>
+</html>

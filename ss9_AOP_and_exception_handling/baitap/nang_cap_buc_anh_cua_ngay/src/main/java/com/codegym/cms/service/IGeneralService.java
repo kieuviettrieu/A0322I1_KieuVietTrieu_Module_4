@@ -10,7 +10,7 @@ public interface IGeneralService<T> {
 
     T findById(Long id);
 
-    void save(T t);
+    void save(T t) throws Exception;
 
     void remove(Long id);
 

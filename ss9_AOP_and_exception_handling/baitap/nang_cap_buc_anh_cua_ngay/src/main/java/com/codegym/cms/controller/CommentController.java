@@ -66,7 +66,12 @@ public class CommentController {
 
     @PostMapping("/comment-create")
     public String saveComment(@ModelAttribute("comment") Comment comment) {
-        commentService.save(comment);
+        try {
+            commentService.save(comment);
+        } catch (Exception e) {
+            return "error";
+        }
+
         return "redirect:comments";
     }
 
@@ -90,8 +95,7 @@ public class CommentController {
 //    }
 
     @GetMapping("/comment-like/{id}")
-    public ModelAndView like(@PathVariable Long id,@PageableDefault(value = 5) Pageable pageable)
-    {
+    public ModelAndView like(@PathVariable Long id,@PageableDefault(value = 5) Pageable pageable) throws Exception {
         Comment comment=commentService.findById(id);
         int like=comment.getLikeComment();
         comment.setLikeComment(++like);

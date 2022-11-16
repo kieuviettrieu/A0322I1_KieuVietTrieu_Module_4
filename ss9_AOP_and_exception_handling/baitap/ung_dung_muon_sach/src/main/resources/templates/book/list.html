@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<a th:href="@{/oders}">List oder type</a>
+<br><br>
+
+<h1>Books</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name Book</th>
+        <th>Author</th>
+        <th>Quantity</th>
+    </tr>
+    <th:block th:each="book : ${books}">
+        <tr>
+            <th th:text="${book.id}"></th>
+            <td th:text="${book.nameBook}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.quantity}"></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <div>
+        <a th:if="${books.hasPrevious()}"
+           th:href="@{'/books/'(page=${books.number - 1})}">
+            Previous
+        </a>
+        <span th:text="${books.number + 1}"></span>
+        /
+        <span th:text="${books.totalPages}"></span>
+        <a th:if="${books.hasNext()}"
+           th:href="@{'/books/'(page=${books.number + 1})}">
+            Next
+        </a>
+    </div>
+</div>
+</body>
+</html>

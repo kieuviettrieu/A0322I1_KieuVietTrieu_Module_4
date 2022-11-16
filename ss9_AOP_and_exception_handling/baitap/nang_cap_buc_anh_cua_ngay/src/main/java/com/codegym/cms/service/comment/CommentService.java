@@ -25,7 +25,12 @@ public class CommentService implements ICommentService{
     }
 
     @Override
-    public void save(Comment comment) {
+    public void save(Comment comment) throws Exception {
+        String[] tuXaus={"danh","dam","chui","nguyen","mat day"};
+        for (String tu: tuXaus) {
+            if(tu.toLowerCase().indexOf(comment.getFeedBack().toLowerCase())>=0)
+                throw new Exception("Loi tu vi pham");
+        }
         commentRepository.save(comment);
     }
 
