@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+</head>
+<body>
+<a th:href="@{/blogs}">List blog</a>
+<br>
+<a th:href="@{/create-blog-type}">Create new blog type</a>
+<h1>Blog</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Ten Blog type</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="blogType : ${blogTypes}">
+        <tr>
+            <th th:text="${blogType.id}"></th>
+            <td th:text="${blogType.tenBlogType}"></td>
+            <td><a th:href="@{/edit-blog-type/__${blogType.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-blog-type/__${blogType.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <div>
+        <a th:if="${blogTypes.hasPrevious()}"
+           th:href="@{'/blog-types/'(page=${blogTypes.number - 1})}">
+            Previous
+        </a>
+        <span th:text="${blogTypes.number + 1}"></span>
+        /
+        <span th:text="${blogTypes.totalPages}"></span>
+        <a th:if="${blogTypes.hasNext()}"
+           th:href="@{'/blog-types/'(page=${blogTypes.number + 1})}">
+            Next
+        </a>
+    </div>
+</div>
+</body>
+</html>
