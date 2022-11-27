@@ -26,6 +26,12 @@ public class SmartphoneController {
         return new ResponseEntity<>(smartphoneService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Smartphone> findByIdPhones(@PathVariable Long id) {
+        Smartphone smartphone=smartphoneService.findById(id).get();
+        return new ResponseEntity<>(smartphone, HttpStatus.OK);
+    }
+
     @GetMapping("/list")
     public ModelAndView getAllSmartphonePage() {
         ModelAndView modelAndView = new ModelAndView("/phones/list");
@@ -45,6 +51,6 @@ public class SmartphoneController {
 
     @PutMapping("/update")
     public ResponseEntity<Smartphone> updateSmartphone(@RequestBody Smartphone smartphone) {
-        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.CREATED);
+        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.OK);
     }
 }
