@@ -44,13 +44,14 @@
                             '<th>Detail</th>'+
                             '    </tr>';
 
+                        console.log(data);
                         for (let i = 0; i < data.length; i++) {
                             content += `<tr>`+
-                                `<td >data[i].blogType.tenBlogType</td>`+
-                                `<td >blog.tenBlog</td>`
-                                `<td >data[i].noiDung</td>` +
-                                `<td >data[i].moTa</td>` +
-                                `<td >data[i].tenTacGia</td>`+
+                                "<td>"+data[i].blogType.tenBlogType+"</td>"+
+                                "<td>"+data[i].tenBlog+"</td>"+
+                                "<td>"+data[i].noiDung+"</td>"+
+                                "<td>"+data[i].moTa+"</td>"+
+                                "<td>"+data[i].tenTacGia+"</td>"+
                                 `<td>Edit</td>`+
                                 `<td>Delete</td>`+
                                 `<td>Detail</td>`+

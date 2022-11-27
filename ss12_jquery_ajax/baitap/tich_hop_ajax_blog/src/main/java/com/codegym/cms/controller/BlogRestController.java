@@ -67,6 +67,11 @@ public class BlogRestController {
 
     @PostMapping("/search-name-blog")
     public ResponseEntity<Iterable<Blog>> listBlog(@RequestBody String searchValue){
-        return new ResponseEntity<>(blogService.findAllByNameBlog(searchValue),HttpStatus.OK);
+        String[] search = searchValue.split("=");
+        String sea;
+        if(search.length==1) sea="";
+        else sea=search[1];
+        Iterable<Blog> blogs=blogService.findAll(sea);
+        return new ResponseEntity<>(blogs,HttpStatus.OK);
     }
 }

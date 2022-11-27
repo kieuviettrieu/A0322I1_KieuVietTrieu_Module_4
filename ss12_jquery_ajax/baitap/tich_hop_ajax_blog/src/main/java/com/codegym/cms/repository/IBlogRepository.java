@@ -14,7 +14,7 @@ import java.util.List;
 public interface IBlogRepository extends JpaRepository<Blog,Long> {
 
     @Query(value = "from Blog where tenBlog like :keyword")
-    List<Blog> searchName(@Param("keyword") String name);
+    Iterable<Blog> searchName(@Param("keyword") String name);
 
     Page<Blog> findAllByTenBlogContaining(String name, Pageable pageable);
 
