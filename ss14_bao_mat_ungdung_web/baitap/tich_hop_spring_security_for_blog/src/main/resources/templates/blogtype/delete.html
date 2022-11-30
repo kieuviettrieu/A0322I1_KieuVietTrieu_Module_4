@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete blog type</title>
+</head>
+<body>
+<h1>Delete blog type</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a th:href="@{/blog-types}">List blog type</a>
+</p>
+<form th:action="@{/delete-blog-type}" th:object="${blogType}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Ten blog type:</td>
+            <td th:text="${blogType.tenBlogType}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete blog type"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
