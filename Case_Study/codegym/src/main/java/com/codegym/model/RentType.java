@@ -11,7 +11,7 @@ public class RentType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer rent_Type_Id;
+    private Integer id;
     private String rent_Type_Name;
 
     @OneToMany(mappedBy = "rentType",cascade = CascadeType.REMOVE)
@@ -20,17 +20,17 @@ public class RentType {
     public RentType() {
     }
 
-    public RentType(int rent_Type_Id, String rent_Type_Name) {
-        this.rent_Type_Id = rent_Type_Id;
+    public RentType(int id, String rent_Type_Name) {
+        this.id = id;
         this.rent_Type_Name = rent_Type_Name;
     }
 
-    public int getRent_Type_Id() {
-        return rent_Type_Id;
+    public int getId() {
+        return id;
     }
 
-    public void setRent_Type_Id(int rent_Type_Id) {
-        this.rent_Type_Id = rent_Type_Id;
+    public void setId(int rent_Type_Id) {
+        this.id = rent_Type_Id;
     }
 
     public String getRent_Type_Name() {

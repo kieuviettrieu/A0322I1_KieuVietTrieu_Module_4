@@ -11,9 +11,9 @@ public class Division {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer division_Id;
+    private Integer id;
 
-    private String division_Name;
+    private String name;
 
     @OneToMany(mappedBy = "division",cascade = CascadeType.REMOVE)
     private Set<Employee> employees;
@@ -21,25 +21,25 @@ public class Division {
     public Division() {
     }
 
-    public Division(int division_Id, String division_Name) {
-        this.division_Id = division_Id;
-        this.division_Name = division_Name;
+    public Division(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public int getDivision_Id() {
-        return division_Id;
+    public int getId() {
+        return id;
     }
 
-    public void setDivision_Id(int division_Id) {
-        this.division_Id = division_Id;
+    public void setId(int division_Id) {
+        this.id = division_Id;
     }
 
-    public String getDivision_Name() {
-        return division_Name;
+    public String getName() {
+        return name;
     }
 
-    public void setDivision_Name(String division_Name) {
-        this.division_Name = division_Name;
+    public void setName(String division_Name) {
+        this.name = division_Name;
     }
 
     public Set<Employee> getEmployees() {

@@ -24,12 +24,12 @@ public class ServiceServiceService implements IServiceService {
     }
 
     @Override
-    public Optional<Service> findById(String id) {
+    public Optional<Service> findById(Integer id) {
         return serviceRepository.findById(id);
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(Integer id) {
         serviceRepository.deleteById(id);
     }
 }

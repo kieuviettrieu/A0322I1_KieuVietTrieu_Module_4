@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IServiceService extends IGeneralService<Service> {
 
-    Optional<Service> findById(String id);
+    Optional<Service> findById(Integer id);
 
-    void remove(String id);
+    void remove(Integer id);
 }

@@ -3,6 +3,7 @@ package com.codegym.model;
 import com.codegym.model.person.Employee;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -11,26 +12,31 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotBlank
     private String userName;
 
     private String password;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.REMOVE)
-    private Employee employee;
+    private boolean isEnabled;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+    private Set<Employee> employee;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = {@JoinColumn(name = "userName")},
-            inverseJoinColumns = {@JoinColumn(name = "role_Id")})
-    private Set<Role> role;
+    @JoinTable(name = "users_roles")
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String userName, String password, Set<Role> role) {
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -49,20 +55,27 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
+    public void setRoles(Set<Role> role) {
+        this.roles = role;
     }
 
-    public Employee getEmployee() {
+    public Set<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(Set<Employee> employee) {
         this.employee = employee;
     }
 
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
 }

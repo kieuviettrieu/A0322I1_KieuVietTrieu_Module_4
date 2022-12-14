@@ -9,7 +9,7 @@ public class AttachService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer attach_Service_Id;
+    private Integer id;
 
     private String attach_Service_Name;
 
@@ -19,35 +19,27 @@ public class AttachService {
 
     private String attach_Service_Status;
 
-    @ManyToMany(mappedBy = "attachServices",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "attachService",cascade = CascadeType.REMOVE)
     private Set<ContractDetail> contractDetails;
 
     public AttachService() {
     }
 
-    public AttachService(int attach_Service_Id, String attach_Service_Name, double attach_Service_Cost,
+    public AttachService(int id, String attach_Service_Name, double attach_Service_Cost,
                          int attach_Service_Unit, String attach_Service_Status) {
-        this.attach_Service_Id = attach_Service_Id;
+        this.id = id;
         this.attach_Service_Name = attach_Service_Name;
         this.attach_Service_Cost = attach_Service_Cost;
         this.attach_Service_Unit = attach_Service_Unit;
         this.attach_Service_Status = attach_Service_Status;
     }
 
-    public Set<ContractDetail> getContractDetails() {
-        return contractDetails;
+    public Integer getId() {
+        return id;
     }
 
-    public void setContractDetails(Set<ContractDetail> contractDetails) {
-        this.contractDetails = contractDetails;
-    }
-
-    public int getAttach_Service_Id() {
-        return attach_Service_Id;
-    }
-
-    public void setAttach_Service_Id(int attach_Service_Id) {
-        this.attach_Service_Id = attach_Service_Id;
+    public void setId(Integer attach_Service_Id) {
+        this.id = attach_Service_Id;
     }
 
     public String getAttach_Service_Name() {
@@ -80,5 +72,13 @@ public class AttachService {
 
     public void setAttach_Service_Status(String attach_Service_Status) {
         this.attach_Service_Status = attach_Service_Status;
+    }
+
+    public Set<ContractDetail> getContractDetails() {
+        return contractDetails;
+    }
+
+    public void setContractDetails(Set<ContractDetail> contractDetails) {
+        this.contractDetails = contractDetails;
     }
 }

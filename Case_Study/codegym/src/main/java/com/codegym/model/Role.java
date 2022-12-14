@@ -8,32 +8,32 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer role_Id;
+    private Integer id;
 
-    private String role_Name;
+    private String roleName;
 
     public Role() {
     }
 
-    public Role(int role_Id, String role_Name) {
-        this.role_Id = role_Id;
-        this.role_Name = role_Name;
+    public Role(int id, String roleName) {
+        this.id = id;
+        this.roleName = roleName;
     }
 
-    public int getRole_Id() {
-        return role_Id;
+    public int getId() {
+        return id;
     }
 
-    public void setRole_Id(int role_Id) {
-        this.role_Id = role_Id;
+    public void setId(int role_Id) {
+        this.id = role_Id;
     }
 
-    public String getRole_Name() {
-        return role_Name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole_Name(String role_Name) {
-        this.role_Name = role_Name;
+    public void setRoleName(String role_Name) {
+        this.roleName = role_Name;
     }
 
 }

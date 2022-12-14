@@ -1,7 +1,6 @@
 package com.codegym.model;
 
 import com.codegym.model.facitily.Service;
-import com.codegym.model.person.Employee;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,9 +11,9 @@ public class ServiceType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer service_Type_Id;
+    private Integer id;
 
-    private String service_Type_Name;
+    private String serviceTypeName;
 
     @OneToMany(mappedBy = "serviceType",cascade = CascadeType.REMOVE)
     private Set<Service> service;
@@ -22,25 +21,25 @@ public class ServiceType {
     public ServiceType() {
     }
 
-    public ServiceType(int service_Type_Id, String service_Type_Name) {
-        this.service_Type_Id = service_Type_Id;
-        this.service_Type_Name = service_Type_Name;
+    public ServiceType(int id, String serviceTypeName) {
+        this.id = id;
+        this.serviceTypeName = serviceTypeName;
     }
 
-    public int getService_Type_Id() {
-        return service_Type_Id;
+    public int getId() {
+        return id;
     }
 
-    public void setService_Type_Id(int service_Type_Id) {
-        this.service_Type_Id = service_Type_Id;
+    public void setId(int service_Type_Id) {
+        this.id = service_Type_Id;
     }
 
-    public String getService_Type_Name() {
-        return service_Type_Name;
+    public String getServiceTypeName() {
+        return serviceTypeName;
     }
 
-    public void setService_Type_Name(String service_Type_Name) {
-        this.service_Type_Name = service_Type_Name;
+    public void setServiceTypeName(String service_Type_Name) {
+        this.serviceTypeName = service_Type_Name;
     }
 
     public Set<Service> getService() {

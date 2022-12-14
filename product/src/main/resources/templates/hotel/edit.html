@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Furama resort</title>
+    <style>
+
+        #header{
+            z-index: 5;
+            border: solid 1px;
+            width: 98.7%;
+            height: 132px;
+            position: fixed;
+            background-color: whitesmoke;
+        }
+
+        #header div{
+            float: left;
+        }
+
+
+        #header div button{
+            display: inline;
+        }
+
+        #menu{
+            z-index: 5;
+            border: solid 1px;
+            width: 98.7%;
+            height: 60px;
+            position: fixed;
+            top: 133px;
+            background-color: silver;
+        }
+
+
+        #body_left{
+            border: solid 1px;
+            float: left;
+            width: 16.2%;
+            height: 590px;
+            top: 194px;
+            position: relative;
+            z-index: 2;
+        }
+
+        #body_right{
+            border: solid 1px;
+            float: left;
+            width: 83.2%;
+            height: 590px;
+            top: 194px;
+            position: relative;
+            z-index: 2;
+        }
+
+        #bostom{
+            border: solid 1px;
+            width: 99.55%;
+            height: 100px;
+            position: relative;
+            clear: both;
+            top: 194px;
+        }
+
+        #menu ul li{
+            display: inline;
+            margin-right: 97px;
+        }
+
+
+        #menu ul li a{
+            color: black;
+            text-decoration: none;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div style="top: -8px; position: relative">
+    <div id="header">
+    </div>
+    <div id="menu">
+        <ul>
+            <li style="margin-left: 250px">
+                <a href="/contracts">Contract</a>
+            </li>
+            <li>
+                <a href="/hotels">Hotel</a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <div id="body_left" style="height: 590px"></div>
+
+        <div id="body_right" style="height: 590px">
+            <form th:action="@{/edit}" th:object="${contract}" method="post">
+                <input type="text" th:field="*{id}" hidden>
+                <table>
+                    <caption><h2>Edit Contract</h2></caption>
+                    <caption>
+                        <th:block th:if="${message}">
+                            <p th:text="${message}"></p>
+                        </th:block>
+                    </caption>
+                    <tr>
+                        <td>Name:</td>
+                        <td><input th:field="*{name}" type="text" minlength="5" maxlength="45" required></td>
+                        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                    </tr>
+                    <tr>
+                        <td>ID card:</td>
+                        <td><input type="text" th:field="*{idCard}" minlength="6" maxlength="8" required></td>
+                        <td th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></td>
+                    </tr>
+                    <tr>
+                        <td>First day:</td>
+                        <td><input type="date" pattern="yyyy-MM-dd" th:field="*{firtsDay}" required></td>
+                        <td th:if="${#fields.hasErrors('firtsDay')}" th:errors="*{firtsDay}"></td>
+                    </tr>
+                    <tr>
+                        <td>Last day:</td>
+                        <td><input type="date" pattern="yyyy-MM-dd" th:field="*{lastDay}" required></td>
+                        <td th:if="${#fields.hasErrors('lastDay')}" th:errors="*{lastDay}"></td>
+                    </tr>
+                    <tr>
+                        <td>Total money:</td>
+                        <td><input type="number" th:field="*{tongTien}" min="0" required></td>
+                        <td th:if="${#fields.hasErrors('tongTien')}" th:errors="*{tongTien}"></td>
+                    </tr>
+                    <tr>
+                        <td>Hotel:</td>
+                        <td>
+                            <select th:field="*{hotels}" multiple required>
+                                <option th:each="item :${contract.hotels}"
+                                        th:value="${item.id}" th:text="${item.name}"></option>
+                                <option th:each="item :${hotels}"
+                                        th:value="${item.id}" th:text="${item.name}" th:if="${item.status}"></option>
+                            </select>
+                        </td>
+                        <td th:if="${#fields.hasErrors('hotels')}" th:errors="*{hotels}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Save"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+
+        <div id="bostom"></div>
+    </div>
+</div>
+</body>
+</html>

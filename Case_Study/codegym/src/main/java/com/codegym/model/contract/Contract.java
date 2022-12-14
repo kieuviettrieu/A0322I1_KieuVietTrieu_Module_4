@@ -6,6 +6,7 @@ import com.codegym.model.person.Employee;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "contract")
@@ -13,7 +14,7 @@ public class Contract {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer contract_Id;
+    private Integer id;
 
     private Date contract_Start_Date;
     private Date contract_End_Date;
@@ -21,23 +22,27 @@ public class Contract {
     private double contract_Total_Money;
 
     @ManyToOne
-    @JoinColumn(name = "contract_Id", referencedColumnName = "employee_Id")
+    @JoinColumn
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "contract_Id", referencedColumnName = "customer_Id")
+    @JoinColumn
     private Customer customer;
     //
     @ManyToOne
-    @JoinColumn(name = "contract_Id", referencedColumnName = "service_Id")
+    @JoinColumn
     private Service service;
+
+
+    @OneToMany(mappedBy = "contract",cascade = CascadeType.REMOVE)
+    private Set<ContractDetail> contractDetailSet;
 
     public Contract() {
     }
 
-    public Contract(int contract_Id, Date contract_Start_Date, Date contract_End_Date, double contract_Deposit,
+    public Contract(int id, Date contract_Start_Date, Date contract_End_Date, double contract_Deposit,
                     double contract_Total_Money, Employee employee, Customer customer, Service service) {
-        this.contract_Id = contract_Id;
+        this.id = id;
         this.contract_Start_Date = contract_Start_Date;
         this.contract_End_Date = contract_End_Date;
         this.contract_Deposit = contract_Deposit;
@@ -48,12 +53,12 @@ public class Contract {
     }
 
 
-    public int getContract_Id() {
-        return contract_Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setContract_Id(int contract_Id) {
-        this.contract_Id = contract_Id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getContract_Start_Date() {
@@ -110,5 +115,13 @@ public class Contract {
 
     public void setService(Service service) {
         this.service = service;
+    }
+
+    public Set<ContractDetail> getContractDetailSet() {
+        return contractDetailSet;
+    }
+
+    public void setContractDetailSet(Set<ContractDetail> contractDetailSet) {
+        this.contractDetailSet = contractDetailSet;
     }
 }

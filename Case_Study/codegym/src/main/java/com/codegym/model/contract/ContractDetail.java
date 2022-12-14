@@ -1,9 +1,6 @@
 package com.codegym.model.contract;
 
-import com.codegym.model.ServiceType;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "contract_detail")
@@ -11,33 +8,26 @@ public class ContractDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer contract_Detail_Id;
+    private Integer id;
     private int quantity;
 
-    @OneToOne
-    @JoinColumn(name = "contract_Detail_Id", referencedColumnName = "contract_Id")
+    @ManyToOne
+    @JoinColumn
     private Contract contract;
 
-    @ManyToMany
-    @JoinColumn(name = "contract_Detail_Id", referencedColumnName = "attach_Service_Id")
-    private Set<AttachService> attachServices;
+    @ManyToOne
+    @JoinColumn
+    private AttachService attachService;
 
     public ContractDetail() {
     }
 
-    public ContractDetail(int contract_Detail_Id, int quantity, Contract contract, Set<AttachService> attachServices) {
-        this.contract_Detail_Id = contract_Detail_Id;
-        this.quantity = quantity;
-        this.contract = contract;
-        this.attachServices = attachServices;
+    public Integer getId() {
+        return id;
     }
 
-    public int getContract_Detail_Id() {
-        return contract_Detail_Id;
-    }
-
-    public void setContract_Detail_Id(int contract_Detail_Id) {
-        this.contract_Detail_Id = contract_Detail_Id;
+    public void setId(Integer contract_Detail_Id) {
+        this.id = contract_Detail_Id;
     }
 
     public int getQuantity() {
@@ -56,11 +46,11 @@ public class ContractDetail {
         this.contract = contract;
     }
 
-    public Set<AttachService> getAttachServices() {
-        return attachServices;
+    public AttachService getAttachService() {
+        return attachService;
     }
 
-    public void setAttachServices(Set<AttachService> attachServices) {
-        this.attachServices = attachServices;
+    public void setAttachService(AttachService attachService) {
+        this.attachService = attachService;
     }
 }

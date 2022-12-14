@@ -11,9 +11,9 @@ public class EducationDegree {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer education_Degree_Id;
+    private Integer id;
 
-    private String education_Degree_Name;
+    private String name;
 
     @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.REMOVE)
     private Set<Employee> employees;
@@ -21,25 +21,25 @@ public class EducationDegree {
     public EducationDegree() {
     }
 
-    public EducationDegree(int education_Degree_Id, String education_Degree_Name) {
-        this.education_Degree_Id = education_Degree_Id;
-        this.education_Degree_Name = education_Degree_Name;
+    public EducationDegree(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public int getEducation_Degree_Id() {
-        return education_Degree_Id;
+    public int getId() {
+        return id;
     }
 
-    public void setEducation_Degree_Id(int education_Degree_Id) {
-        this.education_Degree_Id = education_Degree_Id;
+    public void setId(int education_Degree_Id) {
+        this.id = education_Degree_Id;
     }
 
-    public String getEducation_Degree_Name() {
-        return education_Degree_Name;
+    public String getName() {
+        return name;
     }
 
-    public void setEducation_Degree_Name(String education_Degree_Name) {
-        this.education_Degree_Name = education_Degree_Name;
+    public void setName(String education_Degree_Name) {
+        this.name = education_Degree_Name;
     }
 
     public Set<Employee> getEmployees() {

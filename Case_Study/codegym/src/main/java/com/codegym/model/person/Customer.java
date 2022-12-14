@@ -12,17 +12,17 @@ import java.util.Set;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String customer_Id;
-    private String customer_Name;
-    private Date customer_Birthday;
-    private boolean customer_Gender;
-    private String customer_Id_Card;
-    private String customer_Phone;
-    private String customer_Email;
+    private Integer id;
+    private String name;
+    private Date birthday;
+    private String gender;
+    private String idCard;
+    private String phone;
+    private String email;
     @ManyToOne
-    @JoinColumn(name = "customer_Id", referencedColumnName = "customer_Type_Id")
+    @JoinColumn
     private CustomerType customerType;
-    private String customer_Address;
+    private String address;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.REMOVE)
     private Set<Contract> contracts;
@@ -30,74 +30,61 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String customer_Id, String customer_Name, Date customer_Birthday, boolean customer_Gender,
-                    String customer_Id_Card, String customer_Phone, String customer_Email, CustomerType customerType,
-                    String customer_Address) {
-        this.customer_Id = customer_Id;
-        this.customer_Name = customer_Name;
-        this.customer_Birthday = customer_Birthday;
-        this.customer_Gender = customer_Gender;
-        this.customer_Id_Card = customer_Id_Card;
-        this.customer_Phone = customer_Phone;
-        this.customer_Email = customer_Email;
-        this.customerType = customerType;
-        this.customer_Address = customer_Address;
+
+    public Integer getId() {
+        return id;
     }
 
-    public String getCustomer_Id() {
-        return customer_Id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setCustomer_Id(String customer_Id) {
-        this.customer_Id = customer_Id;
+    public String getName() {
+        return name;
     }
 
-    public String getCustomer_Name() {
-        return customer_Name;
+    public void setName(String customer_Name) {
+        this.name = customer_Name;
     }
 
-    public void setCustomer_Name(String customer_Name) {
-        this.customer_Name = customer_Name;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public Date getCustomer_Birthday() {
-        return customer_Birthday;
+    public void setBirthday(Date customer_Birthday) {
+        this.birthday = customer_Birthday;
     }
 
-    public void setCustomer_Birthday(Date customer_Birthday) {
-        this.customer_Birthday = customer_Birthday;
+    public String getGender() {
+        return gender;
     }
 
-    public boolean isCustomer_Gender() {
-        return customer_Gender;
+    public void setGender(String customer_Gender) {
+        this.gender = customer_Gender;
     }
 
-    public void setCustomer_Gender(boolean customer_Gender) {
-        this.customer_Gender = customer_Gender;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public String getCustomer_Id_Card() {
-        return customer_Id_Card;
+    public void setIdCard(String customer_Id_Card) {
+        this.idCard = customer_Id_Card;
     }
 
-    public void setCustomer_Id_Card(String customer_Id_Card) {
-        this.customer_Id_Card = customer_Id_Card;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getCustomer_Phone() {
-        return customer_Phone;
+    public void setPhone(String customer_Phone) {
+        this.phone = customer_Phone;
     }
 
-    public void setCustomer_Phone(String customer_Phone) {
-        this.customer_Phone = customer_Phone;
+    public String getEmail() {
+        return email;
     }
 
-    public String getCustomer_Email() {
-        return customer_Email;
-    }
-
-    public void setCustomer_Email(String customer_Email) {
-        this.customer_Email = customer_Email;
+    public void setEmail(String customer_Email) {
+        this.email = customer_Email;
     }
 
     public CustomerType getCustomerType() {
@@ -108,12 +95,12 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    public String getCustomer_Address() {
-        return customer_Address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCustomer_Address(String customer_Address) {
-        this.customer_Address = customer_Address;
+    public void setAddress(String customer_Address) {
+        this.address = customer_Address;
     }
 
     public Set<Contract> getContracts() {
